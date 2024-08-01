@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export default function middleware(req) {
-  const verify = req.cookies.get('loggedin')
+export default function middleware(req: NextRequest) {
+  const verify = req.cookies.get('loggedin' as any)
   const url = req.url
 
   if (!verify && url.includes('/posts')) {
