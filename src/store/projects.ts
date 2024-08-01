@@ -26,6 +26,6 @@ export const projects: StoreonModule<State, EventsState> = store => {
 }
 const store: Store = createStoreon<State, EventsState>([projects])
 
-export type Store = typeof store.dispatch
+export type Store = typeof store
 
 export default store
