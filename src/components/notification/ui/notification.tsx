@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 
 import { notification } from '@/store/actions'
-import store, { Store } from '@/store/projects'
+import store from '@/store/projects'
 
 import s from '../style/notification.module.scss'
 
@@ -27,7 +27,7 @@ export const Notification = ({ message, status, title }: NotificationProps) => {
   }
   useEffect(() => {
     const id = setTimeout(() => {
-      store.dispatch<Store>(notification, false)
+      store.dispatch(notification, false)
     }, 3000)
 
     return () => {
