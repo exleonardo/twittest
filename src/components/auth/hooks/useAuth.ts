@@ -5,6 +5,7 @@ import { loginUser } from '@/helpers/login'
 import { EventsState, State } from '@/store/projects'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import { StoreonDispatch } from 'storeon'
 import { useStoreon } from 'storeon/react'
 
 import store from '../../../store/projects'
@@ -25,19 +26,19 @@ export const useAuth = () => {
     const enteredPassword = passwordInputRef.current?.value
 
     try {
-      store.dispatch('notification', true)
+      store.dispatch<StoreonDispatch<EventsState>>('notification', true)
       const res = await loginUser(enteredEmail, enteredPassword)
 
       Cookies.set('loggedin', 'true')
 
-      store.dispatch('status', 'success')
+      store.dispatch<StoreonDispatch<EventsState>>('status', 'success')
 
-      store.dispatch('globalMessage', res.message)
+      store.dispatch<StoreonDispatch<EventsState>>('globalMessage', res.message)
       router.push(PATH.posts)
     } catch (e: any) {
-      store.dispatch('status', 'error')
-      store.dispatch('globalMessage', e.message)
-      store.dispatch('notification', true)
+      store.dispatch<StoreonDispatch<EventsState>>('status', 'error')
+      store.dispatch<StoreonDispatch<EventsState>>('globalMessage', e.message)
+      store.dispatch<StoreonDispatch<EventsState>>('notification', true)
     }
   }
 
