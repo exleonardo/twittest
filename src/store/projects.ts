@@ -6,9 +6,9 @@ export interface State {
   status: 'error' | 'pending' | 'success'
 }
 
-export interface Events {
-  globalMessage: string
-  notification: boolean
+export interface EventsState {
+  ['globalMessage']: string
+  ['notification']: boolean
   status: 'error' | 'pending' | 'success'
 }
 
@@ -18,10 +18,14 @@ const defaultStoreValue: State = {
   status: 'pending',
 }
 
-export const projects: StoreonModule<State, Events> = store => {
+export const projects: StoreonModule<State, EventsState> = store => {
   store.on('@init', () => defaultStoreValue)
   store.on('notification', (state, data) => ({ notification: data }))
   store.on('globalMessage', (state, data) => ({ globalMessage: data }))
   store.on('status', (state, data) => ({ status: data }))
 }
-export const store = createStoreon<State, Events>([projects])
+const store = createStoreon<State, EventsState>([projects])
+
+export type Store = typeof store
+
+export default store

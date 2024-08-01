@@ -1,8 +1,8 @@
 'use client'
 import { useEffect } from 'react'
 
-import { State } from '@/store/projects'
-import { useStoreon } from 'storeon/react'
+import { notification } from '@/store/actions'
+import store, { Store } from '@/store/projects'
 
 import s from '../style/notification.module.scss'
 
@@ -12,7 +12,6 @@ export type NotificationProps = {
   title: string
 }
 export const Notification = ({ message, status, title }: NotificationProps) => {
-  const { dispatch, notification } = useStoreon<State, Event>('notification')
   let statusClasses = ''
 
   if (status === 'success') {
@@ -28,13 +27,13 @@ export const Notification = ({ message, status, title }: NotificationProps) => {
   }
   useEffect(() => {
     const id = setTimeout(() => {
-      dispatch('notification', false)
+      store.dispatch<Store>(notification, false)
     }, 3000)
 
     return () => {
       clearTimeout(id)
     }
-  }, [notification])
+  }, [])
 
   const activeClasses = `${s.notification} ${statusClasses}`
 
