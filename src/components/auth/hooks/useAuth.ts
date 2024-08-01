@@ -27,7 +27,7 @@ export const useAuth = () => {
     const enteredPassword = passwordInputRef.current?.value
 
     try {
-      store.dispatch<DispatchEvent>('notification', 'true')
+      store.dispatch<DispatchEvent<State, EventsState>>('notification', 'true')
       const res = await loginUser(enteredEmail, enteredPassword)
 
       Cookies.set('loggedin', 'true')
