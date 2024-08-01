@@ -5,10 +5,10 @@ export default function middleware(req: NextRequest) {
   const url = req.url
 
   if (!verify && url.includes('/posts')) {
-    return NextResponse.redirect('http://localhost:3000/')
+    return NextResponse.redirect('https://twittest-git-main-exleonardos-projects.vercel.app/')
   }
 
-  if (verify && url === 'http://localhost:3000/') {
-    return NextResponse.redirect('http://localhost:3000/posts')
+  if (verify && url === 'https://twittest-git-main-exleonardos-projects.vercel.app/') {
+    return NextResponse.redirect('https://twittest-git-main-exleonardos-projects.vercel.app/posts')
   }
 }
