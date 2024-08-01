@@ -2,10 +2,12 @@
 import { useEffect } from 'react'
 
 import { notification } from '@/store/actions'
-import store, { EventsState } from '@/store/projects'
-import { StoreonDispatch } from 'storeon'
+import store from '@/store/projects'
+import { createStoreon } from 'storeon'
 
 import s from '../style/notification.module.scss'
+
+import DispatchEvent = createStoreon.DispatchEvent
 
 export type NotificationProps = {
   message: string
@@ -28,7 +30,7 @@ export const Notification = ({ message, status, title }: NotificationProps) => {
   }
   useEffect(() => {
     const id = setTimeout(() => {
-      store.dispatch<StoreonDispatch<EventsState>>(notification, false)
+      store.dispatch<DispatchEvent>(notification, false)
     }, 3000)
 
     return () => {
