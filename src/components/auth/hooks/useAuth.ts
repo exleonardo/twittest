@@ -4,6 +4,7 @@ import { PATH } from '@/common/routes'
 import { loginUser } from '@/helpers/login'
 import { Events, State } from '@/store/projects'
 import Cookies from 'js-cookie'
+import { NextError } from 'next/dist/lib/is-error'
 import { useRouter } from 'next/navigation'
 import { useStoreon } from 'storeon/react'
 
@@ -32,7 +33,7 @@ export const useAuth = () => {
 
       dispatch('globalMessage', res.message)
       router.push(PATH.posts)
-    } catch (e) {
+    } catch (e: unknown) {
       dispatch('status', 'error')
       dispatch('globalMessage', e.message)
       dispatch('notification', true)
