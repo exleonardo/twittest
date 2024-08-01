@@ -33,7 +33,7 @@ export const useAuth = () => {
 
       dispatch('globalMessage', res.message)
       router.push(PATH.posts)
-    } catch (e: unknown) {
+    } catch (e: any) {
       dispatch('status', 'error')
       dispatch('globalMessage', e.message)
       dispatch('notification', true)
