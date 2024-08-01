@@ -7,8 +7,8 @@ export interface State {
 }
 
 export interface EventsState {
-  ['globalMessage']: string
-  ['notification']: boolean
+  globalMessage: string
+  notification: boolean
   status: 'error' | 'pending' | 'success'
 }
 
@@ -26,6 +26,6 @@ export const projects: StoreonModule<State, EventsState> = store => {
 }
 const store = createStoreon<State, EventsState>([projects])
 
-export type Store = typeof store
+export type Store = typeof store.dispatch
 
 export default store
