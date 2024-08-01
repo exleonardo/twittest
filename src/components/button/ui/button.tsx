@@ -1,6 +1,6 @@
 'use client'
 import { PATH } from '@/common/routes'
-import store from '@/store/projects'
+import store, { EventsState, State } from '@/store/projects'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { createStoreon } from 'storeon'
@@ -15,9 +15,9 @@ export const Button = () => {
   const logoutHandler = () => {
     Cookies.remove('loggedin')
 
-    store.dispatch<DispatchEvent>('globalMessage', 'logout')
-    store.dispatch<DispatchEvent>('notification', true)
-    store.dispatch<DispatchEvent>('status', 'pending')
+    store.dispatch<DispatchEvent<State, EventsState>>('globalMessage', 'logout')
+    store.dispatch<DispatchEvent<State, EventsState>>('notification', true)
+    store.dispatch<DispatchEvent<State, EventsState>>('status', 'pending')
     router.push(PATH.base)
   }
 

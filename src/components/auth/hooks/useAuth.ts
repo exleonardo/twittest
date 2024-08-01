@@ -32,14 +32,14 @@ export const useAuth = () => {
 
       Cookies.set('loggedin', 'true')
 
-      store.dispatch<DispatchEvent>('status', 'success')
+      store.dispatch<DispatchEvent<State, EventsState>>('status', 'success')
 
-      store.dispatch<DispatchEvent>('globalMessage', res.message)
+      store.dispatch<DispatchEvent<State, EventsState>>('globalMessage', res.message)
       router.push(PATH.posts)
     } catch (e: any) {
-      store.dispatch<DispatchEvent>('status', 'error')
-      store.dispatch<DispatchEvent>('globalMessage', e.message)
-      store.dispatch<DispatchEvent>('notification', true)
+      store.dispatch<DispatchEvent<State, EventsState>>('status', 'error')
+      store.dispatch<DispatchEvent<State, EventsState>>('globalMessage', e.message)
+      store.dispatch<DispatchEvent<State, EventsState>>('notification', true)
     }
   }
 
