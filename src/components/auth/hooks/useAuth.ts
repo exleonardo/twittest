@@ -14,13 +14,13 @@ export const useAuth = () => {
     'status'
   )
   const router = useRouter()
-  const emailInputRef = useRef(null)
-  const passwordInputRef = useRef(null)
+  const emailInputRef = useRef<HTMLInputElement | null>(null)
+  const passwordInputRef = useRef<HTMLInputElement | null>(null)
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const enteredEmail = emailInputRef.current.value
-    const enteredPassword = passwordInputRef.current.value
+    const enteredEmail = emailInputRef.current?.value
+    const enteredPassword = passwordInputRef.current?.value
 
     try {
       dispatch('notification', true)

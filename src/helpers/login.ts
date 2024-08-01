@@ -1,4 +1,4 @@
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (email?: string, password?: string) => {
   const response = await fetch('/api/signin', {
     body: JSON.stringify({ email, password }),
     headers: { 'Content-type': 'application/json' },
