@@ -1,1 +1,1 @@
-export * from 'src/components/button/ui/button'
+export * from './ui/button'
