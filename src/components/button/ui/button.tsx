@@ -15,8 +15,8 @@ export const Button = () => {
   const logoutHandler = () => {
     Cookies.remove('loggedin')
 
-    store.dispatch<DispatchEvent<State, EventsState>>('globalMessage', 'logout')
-    store.dispatch<DispatchEvent<State, EventsState>>('notification', true)
+    store.dispatch<any>('globalMessage', 'logout' as any)
+    store.dispatch<any>('notification', true as any)
     store.dispatch<DispatchEvent<State, EventsState>>('status', 'pending')
     router.push(PATH.base)
   }
